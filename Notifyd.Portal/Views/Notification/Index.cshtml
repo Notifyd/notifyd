@@ -1,0 +1,73 @@
+﻿@using Notifyd.Portal.Extensions
+@model IEnumerable<Notifyd.Portal.Models.Notification>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2><i class="fa fa-pencil-square-o">Notifications</i></h2>
+
+<p>
+    @Html.ActionButton(" Add Notification", "Create", "Notification", "fa fa-pencil-square-o")
+</p>
+<table class="table table-striped table-condensed table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromDisplay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", new { id = item.NotificationId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.ActionButton("", "Edit", "Notification", "fa fa-pencil", item.NotificationId.ToString()) |
+                @Html.ActionButton("", "Delete", "Notification", "fa fa-trash-o", item.NotificationId.ToString()) |
+                @Html.ActionButton("", "Send", "Notification", "glyphicon glyphicon-send", item.NotificationId.ToString())
+                
+            </td>
+        </tr>
+    }
+
+</table>

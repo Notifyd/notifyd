@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<div class="jumbotron">
+    <h2>Notifyd Dashboard</h2>
+    <table>
+        <tr>
+            <td valign="top">
+                <i class="fa fa-envelope-o fa-4x"></i>
+                <br />
+              
+            </td>
+            <td valign="middle">
+                <p class="lead">Notifyd is a free system notification service.</p>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+            <h2><i class="fa fa-book">Address Book</i></h2>
+            <p>
+                Manage email addresses list that will receive notificaitons.
+            </p>
+            <p><a class="btn btn-default" href="~/Address">Manage Address Book &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2><i class="fa fa-pencil-square-o"></i>Notifications</h2>
+            <p>Manage email templates that will be used to create Notifications.</p>
+            <p><a class="btn btn-default" href="~/Notification">Manage Notifications &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>System Logs</h2>
+            <p>Log messages from the Cogs System.</p>
+            <p><a class="btn btn-default" href="~/SystemLogs">View Logs &raquo;</a></p>
+        </div>
+</div>

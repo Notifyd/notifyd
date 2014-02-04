@@ -1,0 +1,95 @@
+﻿@model Notifyd.Portal.Models.Notification
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2><i class="fa fa-pencil-square-o">Notifications</i></h2>
+
+<div>
+    <h4>Send Notification to Receipients</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromDisplay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromDisplay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        
+        
+        <div class="form-actions no-color">
+            <div class="left-inner-addon ">
+                <i class="glyphicon glyphicon-send white"></i>
+                <input type="submit" value="Send" class="btn btn-primary" /> |
+                @Html.ActionLink("Back to List", "Index")
+             </div>
+           
+        </div>
+    }
+</div>
+

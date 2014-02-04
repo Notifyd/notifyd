@@ -1,0 +1,112 @@
+﻿@using Notifyd.Portal.Extensions
+
+@model IEnumerable<Notifyd.Portal.Models.Address>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2><i class="fa fa-book">Address Book</i></h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+ 
+    @Html.ActionButton(" Add Address", "Create", "Address", "fa fa-user")
+</p>
+<table class="table table-striped table-condensed table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            Last Modified
+        </th>
+        <th>
+            Modified By
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "Edit", new { id = item.AddressId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @* |*@
+                @Html.ActionButton("", "Edit", "Address", "fa fa-pencil", item.AddressId.ToString()) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.AddressId }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.AddressId } )*@
+                @Html.ActionButton("", "Delete", "Address", "fa fa-trash-o", item.AddressId.ToString())
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @*@model Notifyd.Portal.Models.Address
+
+@using (Html.BeginForm("Add", "Address", FormMethod.Post, new { encType = "multipart/form-data", id = "myform", name = "myform" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+
+    <input type="submit" name="operation" id="process" value="process" />
+}*@
+</p>
+<script type="text/javascript">
+    $(function () {
+
+        var form = $("#newaddress-form");
+
+        form.submit(function () {
+
+            var emailData = {
+                NewAddress: $("#address").val()
+            };
+
+            $.ajax({
+                url: "/Address/Add",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                data: JSON.stringify(emailData),
+                success: function (response) {
+                    alert(response);
+                },
+                error: function () {
+                    alert("There was an error... please try again.");
+                }
+            });
+
+            return false;
+        });
+    });
+</script>

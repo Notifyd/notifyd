@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UnifiedLogging.Client</id>
+    <version>1.0.4</version>
+    <title>UnifiedLogging.Client</title>
+    <authors>Unified Logging</authors>
+    <owners>Unified Logging</owners>
+    <projectUrl>http://blog.unifiedlogging.com/getting-started-with-net-nuget-package/</projectUrl>
+    <iconUrl>http://cdn.unifiedlogging.com/images/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET 4.0 Client library for Unified Logging. Contains trace listener and supporting classes. See project Url to get up and running quickly.</description>
+    <releaseNotes />
+    <copyright>Copyright Unified Logging 2012</copyright>
+    <language />
+  </metadata>
+</package>

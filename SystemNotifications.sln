@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifyd.Core", "SN.Core\Notifyd.Core.csproj", "{F28829DD-46E3-4479-8CB9-664226631848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SN.EmailAgent", "SN.EmailAgent\SN.EmailAgent.csproj", "{65C47994-1638-4CFD-B8C3-FC0846A570AC}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Notifyd.Cloud", "Notifyd.Cloud\Notifyd.Cloud.ccproj", "{FE228429-A1C8-4817-B966-02A78A9F212F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifyd.Portal", "Notifyd.Portal\Notifyd.Portal.csproj", "{79C40E8E-BB0B-48A9-B0F2-7AAB4F837611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifyd.Service", "Notifyd.Service\Notifyd.Service.csproj", "{2A2FDDF1-07E8-4CD5-BACC-902179A8CD28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifyd.EmailWorker", "Notifyd.EmailWorker\Notifyd.EmailWorker.csproj", "{06D9E233-E2FA-42E6-BA54-5186BF0C155F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F28829DD-46E3-4479-8CB9-664226631848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28829DD-46E3-4479-8CB9-664226631848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28829DD-46E3-4479-8CB9-664226631848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28829DD-46E3-4479-8CB9-664226631848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C47994-1638-4CFD-B8C3-FC0846A570AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C47994-1638-4CFD-B8C3-FC0846A570AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C47994-1638-4CFD-B8C3-FC0846A570AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C47994-1638-4CFD-B8C3-FC0846A570AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE228429-A1C8-4817-B966-02A78A9F212F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE228429-A1C8-4817-B966-02A78A9F212F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE228429-A1C8-4817-B966-02A78A9F212F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE228429-A1C8-4817-B966-02A78A9F212F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C40E8E-BB0B-48A9-B0F2-7AAB4F837611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C40E8E-BB0B-48A9-B0F2-7AAB4F837611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C40E8E-BB0B-48A9-B0F2-7AAB4F837611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C40E8E-BB0B-48A9-B0F2-7AAB4F837611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2FDDF1-07E8-4CD5-BACC-902179A8CD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2FDDF1-07E8-4CD5-BACC-902179A8CD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2FDDF1-07E8-4CD5-BACC-902179A8CD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2FDDF1-07E8-4CD5-BACC-902179A8CD28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06D9E233-E2FA-42E6-BA54-5186BF0C155F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06D9E233-E2FA-42E6-BA54-5186BF0C155F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06D9E233-E2FA-42E6-BA54-5186BF0C155F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06D9E233-E2FA-42E6-BA54-5186BF0C155F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
