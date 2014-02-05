@@ -29,23 +29,12 @@ namespace Notifyd.EmailWorker
             // Initiates the message pump and callback is invoked for each message that is received, calling close on the client will stop the pump.
             Client.OnMessage((receivedMessage) =>
                 {
-                    string sSource;
-                    string sLog;
-
-                    sSource = "Application";
-                    sLog = "Application";
-
-                    if (!EventLog.SourceExists(sSource))
-                        EventLog.CreateEventSource(sSource, sLog);
-
-                    EventLog.WriteEntry(sSource, "Runnning EmailWorker");
-
+                    Notifyd.Core.Logs.Logger.LogInfo("Receiving Message to Process","Notifyd.EmailWorker");
                     try
                     {
-                        EventLog.WriteEntry(sSource, "Processing EmailWorker");
-
+                      
                         // Process the message
-                        Notifyd.Core.Logs.Logger.LogInfo("Processing Service Bus message: " + receivedMessage.SequenceNumber.ToString());
+                        Notifyd.Core.Logs.Logger.LogInfo("Processing Service Bus message: " + receivedMessage.SequenceNumber.ToString(),"Notifyd.EmailWorker");
 
                         MessageContract order = receivedMessage.GetBody<Notifyd.Core.Contracts.MessageContract>();
                         Notifyd.Core.Logs.Logger.LogInfo(order.PartitionKey + ": " + order.RowKey);
@@ -55,7 +44,8 @@ namespace Notifyd.EmailWorker
                     catch (Exception e)
                     {
                         // Handle any message processing specific exceptions here
-                        EventLog.WriteEntry(sSource, e.ToString());
+                        Notifyd.Core.Logs.Logger.LogError(e.ToString(), "Notifyd.EmailWorker");
+                  
                     }
                 });
 
@@ -64,19 +54,8 @@ namespace Notifyd.EmailWorker
 
         public override bool OnStart()
         {
-            Notifyd.Core.Logs.Logger.LogInfo("Starting EmailWorker");
+            Notifyd.Core.Logs.Logger.LogInfo("Starting EmailWorker", "Notifyd.EmailWorker");
 
-            string sSource;
-            string sLog;
-         
-            sSource = "Application";
-            sLog = "Application";
-         
-            if (!EventLog.SourceExists(sSource))
-                EventLog.CreateEventSource(sSource, sLog);
-
-            EventLog.WriteEntry(sSource, "Starting EmailWorker");
- 
 
             // Set the maximum number of concurrent connections 
             ServicePointManager.DefaultConnectionLimit = 12;
@@ -96,15 +75,8 @@ namespace Notifyd.EmailWorker
 
         public override void OnStop()
         {
-            string sSource;
-            string sLog;
-
-            sSource = "Application";
-            sLog = "Application";
-            
-            EventLog.WriteEntry(sSource, "Stopping EmailWorker");
-
-            Notifyd.Core.Logs.Logger.LogInfo("Stopping EmailWorker");
+     
+            Notifyd.Core.Logs.Logger.LogInfo("Stopping EmailWorker", "Notifyd.EmailWorker");
             // Close the connection to Service Bus Queue
             Client.Close();
             CompletedEvent.Set();

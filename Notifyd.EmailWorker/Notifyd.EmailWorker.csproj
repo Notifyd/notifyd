@@ -71,6 +71,9 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnifiedLogging.Client">
+      <HintPath>..\packages\UnifiedLogging.Client.1.0.4\lib\net40\UnifiedLogging.Client.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +88,9 @@
       <Project>{f28829dd-46e3-4479-8cb9-664226631848}</Project>
       <Name>Notifyd.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
