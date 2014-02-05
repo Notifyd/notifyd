@@ -23,15 +23,18 @@ namespace Notifyd.Core.Logs
            ulClient = new UnifiedLogging.Client.ULSubmitDataRequest(_AccessKey, _SecretKey, _URL, message);
        }
 
-       public static void LogInfo(string msg)
+       public static void LogInfo(string msg, string component = "Notifyd.Core")
        {
-          // Logger l = new Logger();
+           // Logger l = new Logger();
+           StringBuilder output = new StringBuilder();
 
-          //// l._Log.LogInfo(msg);
-          // l._Log.Log(msg);
-           Trace.TraceInformation(msg);
-           // You must close or flush the trace to empty the output buffer.
-           Trace.Flush();
+           output.AppendLine("SEVERITY:INFO");
+           output.AppendLine("MACHINE:" + System.Environment.MachineName);
+           output.AppendLine("COMPONENT:" + component);
+           output.AppendLine(msg);
+
+           Logger l = new Logger(output.ToString());
+           l.ulClient.SubmitAsync();
        }
 
        public static void LogError(string msg, string component = "Notifyd.Core")
