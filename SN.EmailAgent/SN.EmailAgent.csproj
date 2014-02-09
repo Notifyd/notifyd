@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HastyAPI">
+      <HintPath>..\packages\HastyAPI.1.0.11.0\lib\net40\HastyAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="HastyAPI.Nexmo">
+      <HintPath>..\packages\HastyAPI.Nexmo.1.0.0.2\lib\net40\HastyAPI.Nexmo.dll</HintPath>
+    </Reference>
     <Reference Include="Loggly">
       <HintPath>..\packages\loggly-csharp.2.3\lib\net35\Loggly.dll</HintPath>
     </Reference>
@@ -63,8 +69,17 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PushoverClient">
+      <HintPath>..\packages\PushoverNET.1.0.0\lib\net40\PushoverClient.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SendGridMail">
       <HintPath>..\packages\SendGrid.1.2.2\lib\SendGridMail.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -83,11 +98,18 @@
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TropoCSharp">
+      <HintPath>..\packages\tropo-webapi.1.0.2\lib\net40\TropoCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio.Api">
+      <HintPath>..\packages\Twilio.3.6.11\lib\3.5\Twilio.Api.dll</HintPath>
+    </Reference>
     <Reference Include="UnifiedLogging.Client">
       <HintPath>..\packages\UnifiedLogging.Client.1.0.4\lib\net40\UnifiedLogging.Client.dll</HintPath>
     </Reference>
