@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Notifyd.Portal.Models;
 using Notifyd.Portal.CustomAttributes;
+using Notifyd.Core.Managers;
 
 namespace Notifyd.Portal.Controllers
 {
@@ -137,9 +138,12 @@ namespace Notifyd.Portal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SendConfirmed(int id)
         {
-            //Notification notification = db.Notifications.Find(id);
+            Notification msg = db.Notifications.Find(id);
             //db.Notifications.Remove(notification);
             //db.SaveChanges();
+            
+            MessageManager.CreateMessage(msg.OrganizationId.ToString(), msg.Subject, msg.Body, msg.FromDisplay, msg.FromAddress, msg.ToAddress);
+     
             return RedirectToAction("Index");
         }
 

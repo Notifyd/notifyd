@@ -46,3 +46,6 @@ textarea {
 .white, .white a {
   color: #fff;
 }
+
+.large-icon{font-size:24px;}
+.xlarge-icon{font-size:36px;}
