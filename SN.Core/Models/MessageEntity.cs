@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Notifyd.Core.Models 
 {
-    public class MessageEntity : DataEntity
+    public class MessageEntity : TableEntity
     {
+        public MessageEntity()
+        {
+
+        }
         public MessageEntity(string orgId, string messageId)
         {
             base.PartitionKey = orgId;
@@ -33,5 +37,6 @@ namespace Notifyd.Core.Models
 
         public string CompletedOn { get; set; }
 
+        public string ModifiedOn { get; set; }
     }
 }

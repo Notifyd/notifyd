@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Notifyd.Core.Models
 {
-    public class DataEntity : TableEntity, IEntity
+    public class DataEntity : TableEntity
     {
 
         public DataEntity()

@@ -13,7 +13,7 @@ namespace Notifyd.Core.IO
     {
         private CloudStorageAccount _StorageAccount;
         private CloudTableClient _TableClient;
-        private CloudTable _Table;
+        public CloudTable Table { get; set; }
         private string _TableName;
 
         public TableClient(string tableName)
@@ -27,18 +27,46 @@ namespace Notifyd.Core.IO
             _TableClient = _StorageAccount.CreateCloudTableClient();
 
             // Create the table if it doesn't exist.
-            _Table = _TableClient.GetTableReference(_TableName);
+            Table = _TableClient.GetTableReference(_TableName);
 
-            _Table.CreateIfNotExists();
+            Table.CreateIfNotExists();
         }
 
-        public void InsertRow(Models.IEntity obj)
+        public void InsertRow(TableEntity obj)
         {
-            obj.ModifiedOn = System.DateTime.Now;
+           // obj.ModifiedOn = System.DateTime.Now;
 
             TableOperation operation = TableOperation.Insert(obj);
 
-            _Table.Execute(operation);
+            Table.Execute(operation);
+        }
+
+        public T GetRow<T>(string partitionId, string rowKey) where T : IConvertible
+        {
+            T result = default(T);
+
+            // Create a retrieve operation that takes a customer entity.
+            TableOperation operation = TableOperation.Retrieve<TableEntity>(partitionId, rowKey);
+          
+        // Execute the retrieve operation.
+          TableResult tresult = Table.Execute(operation);
+
+          //Models.DataEntity entity = (TEntity)result.Result;
+          result = (T)Convert.ChangeType(tresult.Result, typeof(T));
+
+          return result;
+
+        }
+
+        public void UpdateRow(TableEntity entity)
+        {
+          
+            // Create the InsertOrReplace TableOperation
+            TableOperation updateOperation = TableOperation.Replace(entity);
+
+            // Execute the operation.
+            Table.Execute(updateOperation);
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notifyd.Portal.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Notifyd.Portal
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<MyDbContext>(new MyDbInitializer());
+            Database.SetInitializer<ApplicationDbContext>(new NotifydDbInitializer());
 
         }
     }

@@ -88,6 +88,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TropoCSharp">
+      <HintPath>..\packages\tropo-webapi.1.0.2\lib\net40\TropoCSharp.dll</HintPath>
+    </Reference>
     <Reference Include="UnifiedLogging.Client">
       <HintPath>..\packages\UnifiedLogging.Client.1.0.4\lib\net40\UnifiedLogging.Client.dll</HintPath>
     </Reference>

@@ -9,6 +9,9 @@ using Microsoft.ServiceBus.Messaging;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Notifyd.Core.Contracts;
+using Notifyd.Core.Managers;
+using Notifyd.Core.Models;
+using Notifyd.Core.Operations;
 
 namespace Notifyd.EmailWorker
 {
@@ -20,6 +23,7 @@ namespace Notifyd.EmailWorker
         // QueueClient is thread-safe. Recommended that you cache 
         // rather than recreating it on every request
         QueueClient Client;
+
         ManualResetEvent CompletedEvent = new ManualResetEvent(false);
 
         public override void Run()
@@ -39,6 +43,17 @@ namespace Notifyd.EmailWorker
                         MessageContract order = receivedMessage.GetBody<Notifyd.Core.Contracts.MessageContract>();
                         Notifyd.Core.Logs.Logger.LogInfo(order.PartitionKey + ": " + order.RowKey);
 
+                        // Load Message Object
+                       MessageEntity msg = MessageManager.GetMessage(order.PartitionKey, order.RowKey);
+
+                       MailManager manager = new MailManager();
+
+                       manager.Send(msg);
+
+                       msg.Status = "0";
+                       msg.CompletedOn = DateTime.Now.ToString();
+
+                        // Mark Message as complete in Queue
                         receivedMessage.Complete();
                     }
                     catch (Exception e)

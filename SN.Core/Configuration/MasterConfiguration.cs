@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Notifyd.Core.Configuration
 {
-    class MasterConfiguration
+    public class MasterConfiguration
     {
         static public string OperationsSendGridUserName
         {
@@ -29,6 +29,14 @@ namespace Notifyd.Core.Configuration
             get
             {
                 return ConfigurationManager.AppSettings["Operations.System.MailHost"];
+            }
+        }
+
+        static public string PushoverAppAPIKey
+        {
+            get
+            {
+                return "aTfXy1NcjmumNjmJ6RYiu65ijrsgcP";
             }
         }
     }

@@ -36,6 +36,15 @@ namespace Notifyd.Portal.Models
         {
         }
 
+        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityUser>().ToTable("Users");
+            modelBuilder.Entity<NotifydUser>().ToTable("Users");
+
+        }
+
         public System.Data.Entity.DbSet<Notifyd.Portal.Models.Notification> Notifications { get; set; }
 
         public System.Data.Entity.DbSet<Notifyd.Portal.Models.Address> Addresses { get; set; }
