@@ -1,4 +1,8 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Notifyd.Portal.Models;
+@using Microsoft.AspNet.Identity;
+@using NGravatar.Html;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using Notifyd.Portal.Models;
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +51,33 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">  
+                            @{
+        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>
+(new ApplicationDbContext()));
+
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+
+        if (currentUser.UserName == null)
+        {
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+                <p>Null Email</p>
             </li>
+        }
+        else
+        {
+            if (currentUser.UserName == "Admin")
+            {
+                <li><a href="~/Admin">Admin</a></li>
+            }
+            <li>
+                <a href="@Url.Action("MyProfile", "Account")" class="gravatar-icon">
+                    @Html.Gravatar(currentUser.UserName, 40, null, "http://www.flaticon.com/png/256/22447.png", null, null, htmlAttributes: new { style = "background-color: white;" })
+                </a>
+            </li>
+                            }
+                            }
+                       
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }

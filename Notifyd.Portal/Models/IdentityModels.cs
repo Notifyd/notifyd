@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Notifyd.Portal.Models
 {
@@ -9,14 +11,19 @@ namespace Notifyd.Portal.Models
     //    public string Name { get; set; }
     //}
 
-    public class NotifydUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
         public string Email { get; set; }
+        [DisplayName("Mobile Number")]
+        [DataType(DataType.PhoneNumber)]
         public string MobileNumber { get; set; }
+        [DisplayName("Pushover API Key")]
         public string PushoverKey { get; set; }
-        public virtual ICollection<Organization>
-            Organizations { get; set; }
+        public string Icon { get; set; }
+        public bool Active { get; set; }
+        [DisplayName("Organization")]
+        public Organization UserOrganization { get; set; }
 
     }
 
@@ -24,12 +31,14 @@ namespace Notifyd.Portal.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual NotifydUser Owner { get; set; }
-        public virtual ICollection<NotifydUser>
+        public string Description { get; set; }
+        public string URL { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
+        public virtual ICollection<ApplicationUser>
             Members { get; set; }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<NotifydUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -41,12 +50,15 @@ namespace Notifyd.Portal.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<IdentityUser>().ToTable("Users");
-            modelBuilder.Entity<NotifydUser>().ToTable("Users");
-
+            modelBuilder.Entity<ApplicationUser>().ToTable("Users");
+          
         }
 
         public System.Data.Entity.DbSet<Notifyd.Portal.Models.Notification> Notifications { get; set; }
 
         public System.Data.Entity.DbSet<Notifyd.Portal.Models.Address> Addresses { get; set; }
+
+        public System.Data.Entity.DbSet<Notifyd.Portal.Models.Organization> Organizations { get; set; }
+
     }
 }

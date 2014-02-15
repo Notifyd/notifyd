@@ -1,0 +1,110 @@
+﻿@using Notifyd.Portal.Models;
+@using Microsoft.AspNet.Identity;
+@using NGravatar.Html;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using Notifyd.Portal.Models;
+@using Notifyd.Portal.Extensions
+@model Notifyd.Portal.Models.ApplicationUser
+@{
+    ViewBag.Title = "Manage Profile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+@{
+    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>
+    (new ApplicationDbContext()));
+
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+
+
+
+    if (currentUser.UserName == null)
+    {
+        <p>Null Email</p>
+    }
+    else
+    {
+        @Html.Gravatar(currentUser.UserName, 100, null)
+    }
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(model => model.Id)
+    <div class="row">
+        <div class="col-md-8">
+            <fieldset class="form-horizontal">
+                <legend>Profile Details</legend>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.UserName,new {@class = "form-control", @readonly="readonly" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.Name,new {@class = "form-control"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PushoverKey, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.PushoverKey,new {@class = "form-control"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MobileNumber, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.MobileNumber,new {@class = "form-control"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserOrganization, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownList("OrgId", "No Organizations")
+                    </div>
+                </div>
+                
+                <hr />
+                <div class="form-actions no-color">
+                    <input type="submit" value="Update" class="btn" />
+                </div>
+                <p class="text-success">@ViewBag.StatusMessage</p>
+            </fieldset>
+
+        </div>
+        <div class="col-md-4">
+            <section id="changepwd">
+                <ul>
+                    <li>
+                        @Html.ActionButton(" Change Password", "Manage", "Account", "fa fa-key")
+                    </li>
+                    <li>
+                        @Html.ActionButton(" Organizations", "Index", "Organization", "fa fa-building-o")
+                    </li>
+                    <li>
+                        <a href="https://pushover.net/"><i class="fa fa-mobile"></i> Pushover Profile</a>
+                        
+                    </li>
+                    <li>
+                        <i class="fa fa-picture-o"></i> @Html.GravatarProfileLink(currentUser.UserName, "Gravatar Profile", null, null)</li>
+                </ul>
+
+            </section>
+        </div>
+    </div>
+
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

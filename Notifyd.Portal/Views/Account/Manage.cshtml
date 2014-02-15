@@ -1,11 +1,33 @@
 ﻿@using Notifyd.Portal.Models;
 @using Microsoft.AspNet.Identity;
+@using NGravatar.Html;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using Notifyd.Portal.Models;
 @{
     ViewBag.Title = "Manage Account";
 }
 
 <h2>@ViewBag.Title.</h2>
+<p>
+@{
+    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>
+    (new ApplicationDbContext()));
 
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+
+
+    
+    if (currentUser.UserName == null )
+    {
+        <p>Null Email</p>
+    }
+    else
+    {
+           @Html.Gravatar(currentUser.UserName, 100, null)
+    }
+ 
+    }
+</p>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
     <div class="col-md-12">
@@ -18,10 +40,10 @@
             @Html.Partial("_SetPasswordPartial")
         }
 
-        <section id="externalLogins">
+        @*<section id="externalLogins">
             @Html.Action("RemoveAccountList")
             @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        </section>*@
     </div>
 </div>
 @section Scripts {

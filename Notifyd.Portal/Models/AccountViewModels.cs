@@ -28,10 +28,25 @@ namespace Notifyd.Portal.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ProfileViewModel
+    {
+        public string Id { get; set; }
+        [Display(Name = "Full Name")]
+        public string Name { get; set; }
+        [Display(Name = "Pushover API Key")]
+        public string PushoverKey { get; set; }
+
+        [Required]
+        [Display(Name = "Organization")]
+        public Organization UserOrganization { get; set; }
+        [Display(Name = "Mobile Number")]
+        [DataType(DataType.PhoneNumber)]
+        public string MobileNumber { get; set; }
+    }
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Email Address")]
         public string UserName { get; set; }
 
         [Required]
@@ -46,8 +61,17 @@ namespace Notifyd.Portal.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
         public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Full Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Pushover Key")]
+        public string PushoverKey { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

@@ -14,11 +14,12 @@ namespace Notifyd.Portal
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<ApplicationDbContext>(new NotifydDbInitializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<ApplicationDbContext>(new NotifydDbInitializer());
+          
 
         }
     }

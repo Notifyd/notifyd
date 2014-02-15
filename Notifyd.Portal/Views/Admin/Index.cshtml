@@ -1,0 +1,34 @@
+﻿@using Notifyd.Portal.Extensions
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h2>Administration</h2>
+    <ul>
+        <li>@Html.ActionButton(" Manage Roles", "Index", "RolesAdmin", "fa fa-group")
+        </li>
+        <li>
+            @Html.ActionButton(" Manage Users", "Index", "UserAdmin", "fa fa-user")
+    </li>
+        <li>
+            @Html.ActionButton(" Manage Organizations", "All", "Organization", "fa fa-building-o")
+        </li>
+    </ul>
+    <table>
+        <tr>
+            <td valign="top">
+
+                <br />
+
+            </td>
+            <td valign="middle">
+                <p class="lead"><i class="ionicons ion-radio-waves xlarge-icon"></i>Notifyd is a free system notification service.</p>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+

@@ -9,23 +9,40 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Notifyd.Portal.Models;
+using System.Net;
 
 namespace Notifyd.Portal.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
+        private ApplicationDbContext _db;
+       // private UserManager<ApplicationUser> manager;
+
         public AccountController()
-            : this(new UserManager<NotifydUser>(new UserStore<NotifydUser>(new ApplicationDbContext())))
+            : this(new ApplicationDbContext())
         {
+          //  db = new ApplicationDbContext();
+           // manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
-        public AccountController(UserManager<NotifydUser> userManager)
-        {
-            UserManager = userManager;
-        }
+        //public AccountController(UserManager<ApplicationUser> userManager)
+        //{
 
-        public UserManager<NotifydUser> UserManager { get; private set; }
+        //    UserManager = userManager;
+        //    UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager) { AllowOnlyAlphanumericUserNames = false };
+
+        //}
+
+        public AccountController(ApplicationDbContext db)
+        {
+            _db = db;
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager) { AllowOnlyAlphanumericUserNames = false };
+         }
+
+        public UserManager<ApplicationUser> UserManager { get; set; }
 
         //
         // GET: /Account/Login
@@ -78,7 +95,7 @@ namespace Notifyd.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new NotifydUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName, Name = model.Name, MobileNumber = "5554441234", PushoverKey = model.PushoverKey };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -114,6 +131,58 @@ namespace Notifyd.Portal.Controllers
             return RedirectToAction("Manage", new { Message = message });
         }
 
+        public async Task<ActionResult> MyProfile(ManageMessageId? message)
+        {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Profile Updated"
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : "";
+              var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+      
+            //var currentUser = manager.FindById(User.Identity.GetUserId());
+              ViewBag.OrgId = new SelectList(_db.Organizations.ToList().Where(org => org.Owner.UserName == user.UserName), "Id", "Name", user.UserOrganization.Id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> MyProfile([Bind(Include = "Name,Id,PushoverKey,MobileNumber")] ApplicationUser formuser, string id, String OrgId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            int oid = Convert.ToInt32(OrgId);
+            
+            ViewBag.OrgId = new SelectList(_db.Organizations, "Id", "Name");
+            var user = await UserManager.FindByIdAsync(id);
+            Organization neworg = _db.Organizations.First(a => a.Id == oid);
+           
+            user.Name = formuser.Name;
+            user.PushoverKey = formuser.PushoverKey;
+            user.MobileNumber = formuser.MobileNumber;
+            user.UserOrganization = neworg;
+
+            if (ModelState.IsValid)
+            {
+                //Update the user details
+                await UserManager.UpdateAsync(user);
+
+                return RedirectToAction("MyProfile", new { Message = ManageMessageId.ChangePasswordSuccess });
+            }
+            else
+            {
+               // ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
+                return RedirectToAction("MyProfile", new { Message = ManageMessageId.Error });
+            }
+        }
+
         //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
@@ -128,6 +197,7 @@ namespace Notifyd.Portal.Controllers
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
         }
+
 
         //
         // POST: /Account/Manage
@@ -265,7 +335,7 @@ namespace Notifyd.Portal.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new NotifydUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -331,7 +401,7 @@ namespace Notifyd.Portal.Controllers
             }
         }
 
-        private async Task SignInAsync(NotifydUser user, bool isPersistent)
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);

@@ -39,6 +39,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0-alpha1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0-alpha1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0-alpha1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0-alpha1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
@@ -85,6 +101,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NGravatar">
+      <HintPath>..\packages\NGravatar.1.0.1\lib\net40\NGravatar.dll</HintPath>
+    </Reference>
+    <Reference Include="NGravatar.Core">
+      <HintPath>..\packages\NGravatar.Core.1.0.1\lib\net40\NGravatar.Core.dll</HintPath>
     </Reference>
     <Reference Include="Portable.Licensing">
       <HintPath>..\packages\Portable.Licensing.1.1.0\lib\portable-net40+sl4+wp7+win8\Portable.Licensing.dll</HintPath>
@@ -176,20 +198,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -230,9 +240,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="CustomAttributes\NotifydAuthAttribute.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -246,9 +260,38 @@
     <Compile Include="Migrations\201401260247394_AddAddresses.Designer.cs">
       <DependentUpon>201401260247394_AddAddresses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402100309070_Add-Org.cs" />
+    <Compile Include="Migrations\201402100309070_Add-Org.Designer.cs">
+      <DependentUpon>201402100309070_Add-Org.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402100330576_Add-Active.cs" />
+    <Compile Include="Migrations\201402100330576_Add-Active.Designer.cs">
+      <DependentUpon>201402100330576_Add-Active.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402101226566_Add Description.cs" />
+    <Compile Include="Migrations\201402101226566_Add Description.Designer.cs">
+      <DependentUpon>201402101226566_Add Description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402101316400_2-10 Refactor.cs" />
+    <Compile Include="Migrations\201402101316400_2-10 Refactor.Designer.cs">
+      <DependentUpon>201402101316400_2-10 Refactor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402101332176_2-10 Refactor b.cs" />
+    <Compile Include="Migrations\201402101332176_2-10 Refactor b.Designer.cs">
+      <DependentUpon>201402101332176_2-10 Refactor b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402101504312_2-10 Rename User.cs" />
+    <Compile Include="Migrations\201402101504312_2-10 Rename User.Designer.cs">
+      <DependentUpon>201402101504312_2-10 Rename User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402131323205_Change Org.cs" />
+    <Compile Include="Migrations\201402131323205_Change Org.Designer.cs">
+      <DependentUpon>201402131323205_Change Org.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -256,6 +299,20 @@
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\main.css" />
+    <Content Include="assets\img\app-bg.png" />
+    <Content Include="assets\img\arrow1.png" />
+    <Content Include="assets\img\arrow2.png" />
+    <Content Include="assets\img\intro01.png" />
+    <Content Include="assets\img\intro02.png" />
+    <Content Include="assets\img\intro03.png" />
+    <Content Include="assets\img\item-01.png" />
+    <Content Include="assets\img\item-02.png" />
+    <Content Include="assets\img\mobile.png" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\smoothscroll.js" />
     <Content Include="Content\bootstrap-spacelab.css" />
     <Content Include="Content\bootstrap-spacelab.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -264,17 +321,27 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\person.png" />
     <Content Include="Content\radio-waves.png" />
     <Content Include="Content\sb-admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\ionicons.eot" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.woff" />
+    <Content Include="assets\.DS_Store" />
+    <Content Include="assets\css\.DS_Store" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\img\.DS_Store" />
+    <Content Include="assets\js\.DS_Store" />
     <None Include="Properties\PublishProfiles\notifyd - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\notifyd - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -320,7 +387,9 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -361,6 +430,24 @@
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Address\Add.cshtml" />
     <Content Include="Views\Notification\Send.cshtml" />
+    <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Views\UserAdmin\Index.cshtml" />
+    <Content Include="Views\UserAdmin\Create.cshtml" />
+    <Content Include="Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Views\UserAdmin\Delete.cshtml" />
+    <Content Include="Views\UserAdmin\Details.cshtml" />
+    <Content Include="Views\Organization\Create.cshtml" />
+    <Content Include="Views\Organization\Delete.cshtml" />
+    <Content Include="Views\Organization\Details.cshtml" />
+    <Content Include="Views\Organization\Edit.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\Organization\All.cshtml" />
+    <Content Include="Views\Account\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -385,6 +472,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401260247394_AddAddresses.resx">
       <DependentUpon>201401260247394_AddAddresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402100309070_Add-Org.resx">
+      <DependentUpon>201402100309070_Add-Org.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402100330576_Add-Active.resx">
+      <DependentUpon>201402100330576_Add-Active.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402101226566_Add Description.resx">
+      <DependentUpon>201402101226566_Add Description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402101316400_2-10 Refactor.resx">
+      <DependentUpon>201402101316400_2-10 Refactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402101332176_2-10 Refactor b.resx">
+      <DependentUpon>201402101332176_2-10 Refactor b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402101504312_2-10 Rename User.resx">
+      <DependentUpon>201402101504312_2-10 Rename User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402131323205_Change Org.resx">
+      <DependentUpon>201402131323205_Change Org.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
