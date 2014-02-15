@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NGravatar.Core</name>
+    </assembly>
+    <members>
+        <member name="T:NGravatar.Gravatar">
+            <summary>
+            Class whose instances can retrieve Gravatar avatar images.
+            </summary>
+        </member>
+        <member name="M:NGravatar.Gravatar.GetHash(System.String)">
+            <summary>
+            Converts the given <paramref name="emailAddress"/> to the hash needed
+            to get the associated gravatar image.
+            </summary>
+            <param name="emailAddress">The email address for which the hash should be computed.</param>
+            <returns>The hash of the <paramref name="emailAddress"/>.</returns>
+        </member>
+        <member name="M:NGravatar.Gravatar.GetUrl(System.String,System.Nullable{System.Int32},System.Nullable{NGravatar.GravatarRating},System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Gets a link to the image file of the Gravatar for the specified <paramref name="emailAddress"/>.
+            </summary>
+            <param name="emailAddress">The email whose Gravatar image source should be returned.</param>
+            <param name="size">The size of the Gravatar image, or <c>null</c> to use the default size.</param>
+            <param name="rating">The allowed rating of the Gravatar avatar, or <c>null</c> to use the default rating.</param>
+            <param name="default">The location of the default Gravatar image, or <c>null</c> to use the default location.</param>
+            <param name="forceDefault"><c>true</c> to force the <paramref name="default"/> image to be loaded. Otherwise, <c>false</c>.</param>
+            <param name="useHttps"><c>true</c> to use the base HTTPS Gravatar URL. Otherwise, <c>false</c>.</param>
+            <returns>The URL of the Gravatar for the specified <paramref name="emailAddress"/>.</returns>
+        </member>
+        <member name="M:NGravatar.Gravatar.Render(System.String,System.Nullable{System.Int32},System.Nullable{NGravatar.GravatarRating},System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Creates an img tag whose source is the address of the Gravatar for the specified <paramref name="emailAddress"/>.
+            </summary>
+            <param name="emailAddress">The email address whose Gravatar should be rendered.</param>
+            <param name="size">The size of the Gravatar image, or <c>null</c> to use the default size.</param>
+            <param name="rating">The allowed rating of the Gravatar avatar, or <c>null</c> to use the default rating.</param>
+            <param name="default">The location of the default Gravatar image, or <c>null</c> to use the default location.</param>
+            <param name="forceDefault"><c>true</c> to force the <paramref name="default"/> image to be loaded. Otherwise, <c>false</c>.</param>        
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <param name="htmlAttributes">Additional attributes to include in the img tag.</param>
+            <returns>An HTML img tag of the rendered Gravatar.</returns>
+        </member>
+        <member name="P:NGravatar.Gravatar.DefaultInstance">
+            <summary>
+            Gets or sets the default instance of <see cref="T:Gravatar"/> used.
+            </summary>
+            <exception cref="T:ArgumentNullException">
+            Thrown if <c>value</c> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="P:NGravatar.Gravatar.Rating">
+            <summary>
+            Gets or sets the maximum Gravatar rating allowed to be displayed
+            or <c>null</c> to allow the default Gravatar rating.
+            </summary>
+        </member>
+        <member name="P:NGravatar.Gravatar.RenderedSize">
+            <summary>
+            Gets or sets the default size of Gravatar images rendered
+            as HTML elements.
+            </summary>
+        </member>
+        <member name="P:NGravatar.Gravatar.Size">
+            <summary>
+            Gets or sets the image size, in pixels, of the Gravatar images
+            or <c>null</c> to use the default Gravatar size.
+            </summary>
+        </member>
+        <member name="P:NGravatar.Gravatar.Default">
+            <summary>
+            Gets or sets the URL of the default image to be shown if no 
+            Gravatar is found for an email address.
+            </summary>
+        </member>
+        <member name="P:NGravatar.Gravatar.ForceDefault">
+            <summary>
+            Gets or sets a flag that indicates whether or not the default image
+            should be forced for all Gravatar avatar images.
+            </summary>
+        </member>
+        <member name="P:NGravatar.Gravatar.UseHttps">
+            <summary>
+            Gets or sets a flag that indicates whether or not Gravatar requests
+            will use HTTPS.
+            </summary>
+        </member>
+        <member name="T:NGravatar.GravatarRating">
+            <summary>
+            Gravatar avatar rating.
+            </summary>
+        </member>
+        <member name="F:NGravatar.GravatarRating.G">
+            <summary>
+            G
+            </summary>
+        </member>
+        <member name="F:NGravatar.GravatarRating.PG">
+            <summary>
+            PG
+            </summary>
+        </member>
+        <member name="F:NGravatar.GravatarRating.R">
+            <summary>
+            R
+            </summary>
+        </member>
+        <member name="F:NGravatar.GravatarRating.X">
+            <summary>
+            X
+            </summary>
+        </member>
+        <member name="T:NGravatar.GravatarProfile">
+            <summary>
+            Class to provide functionality for dealing with Gravatar profile information.
+            </summary>
+        </member>
+        <member name="M:NGravatar.GravatarProfile.GetUrl(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Gets the URL that links to the Gravatar profile of the specified <paramref name="emailAddress"/>.
+            </summary>
+            <param name="emailAddress">The email whose profile should be linked.</param>
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <returns>The URL of the profile for the specified <paramref name="emailAddress"/>.</returns>
+        </member>
+        <member name="M:NGravatar.GravatarProfile.GetXmlApiUrl(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Gets the API URL of the XML profile entry associated with the <paramref name="emailAddress"/>.
+            </summary>
+            <param name="emailAddress">The email address of the account.</param>
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <returns>
+            The URL of the XML entry for the Gravatar account.
+            </returns>
+        </member>
+        <member name="M:NGravatar.GravatarProfile.GetJsonApiUrl(System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Gets the API URL of the JSON profile entry associated with the <paramref name="emailAddress"/>.
+            </summary>
+            <param name="emailAddress">The email address of the account.</param>
+            <param name="callback">The Javascript callback function to be invoked when the requested data returns.</param>
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <returns>
+            The URL of the JSON entry for the Gravatar account.
+            </returns>
+        </member>
+        <member name="M:NGravatar.GravatarProfile.LoadInformation(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Parses Gravatar profile information for the specified <paramref name="emailAddress"/> into an object.
+            </summary>
+            <param name="emailAddress">The email whose profile information should be returned.</param>
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <returns>An object that contains information about the Gravatar profile for the specified <paramref name="emailAddress"/>.</returns>
+        </member>
+        <member name="M:NGravatar.GravatarProfile.RenderScript(System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Creates a script tag that can be included in an HTML page to process a Gravatar profile on the client.
+            </summary>
+            <param name="emailAddress">The email whose profile should be processed.</param>
+            <param name="callback">
+            The JavaScript callback function which should be called after the profile information is loaded. The profile
+            information will be passed as a paramter to this callback.
+            </param>
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <returns>A rendered script tag that can be included in an HTML page.</returns>
+        </member>
+        <member name="M:NGravatar.GravatarProfile.RenderLink(System.String,System.String,System.Nullable{System.Boolean},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Creates an HTML link tag that points to the Gravatar profile of the <paramref name="emailAddress"/>.
+            </summary>
+            <param name="emailAddress">The email address of the account whose profile should be linked.</param>
+            <param name="linkText">The inner text of the link tag.</param>
+            <param name="useHttps">
+            <c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.
+            This value can be <c>null</c> to use the <see cref="P:NGravatar.Gravatar.UseHttps"/> value
+            of the <see cref="P:NGravatar.Gravatar.DefaultInstance"/>.
+            </param>
+            <param name="htmlAttributes">
+            Additional HTML attributes to apply to the tag.
+            </param>
+            <returns>An HTML link tag that points to the Gravatar profile of the <paramref name="emailAddress"/>.</returns>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfileInformation">
+            <summary>
+            Gravatar profile information object.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileInformation.ToString">
+            <summary>
+            Returns the <see cref="P:NGravatar.ProfileInformation.GravatarProfileInformation.DisplayName"/>.
+            </summary>
+            <returns>The <see cref="P:NGravatar.ProfileInformation.GravatarProfileInformation.DisplayName"/>.</returns>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Id">
+            <summary>
+            Gets the ID value of this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Exists">
+            <summary>
+            Gets a flag that indicates whether or not this profile exists in
+            Gravatar's system.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Hash">
+            <summary>
+            Gets this profile's hash.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.RequestHash">
+            <summary>
+            Gets this profile's request hash.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.ProfileUrl">
+            <summary>
+            Gets the URL of this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.PreferredUsername">
+            <summary>
+            Gets the preferred username of this profile's owner.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.ThumbnailUrl">
+            <summary>
+            Gets the URL of the thumbnail for this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.DisplayName">
+            <summary>
+            Gets the name to display for the owner of this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.AboutMe">
+            <summary>
+            Gets information about the owner of this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.CurrentLocation">
+            <summary>
+            Gets the current location value of this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Name">
+            <summary>
+            Gets the profile name section of this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Urls">
+            <summary>
+            Gets a collection of URLs associated with this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Emails">
+            <summary>
+            Gets a collection of emails associated with this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Photos">
+            <summary>
+            Gets a collection of photos associated with this profile.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileInformation.Accounts">
+            <summary>
+            Gets a collection of accounts associated with this profile.
+            </summary>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfilePluralField">
+            <summary>
+            A field of a Gravatar profile that may have more than one instance per profile.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePluralField.#ctor">
+            <summary>
+            Creates a new instance of the field.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePluralField.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the field.
+            </summary>
+            <param name="value">The value of the field.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePluralField.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the Gravatar profile field.
+            </summary>
+            <param name="value">The value of the field.</param>
+            <param name="type">The type of the field.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePluralField.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the Gravatar profile field.
+            </summary>
+            <param name="value">The value of the field.</param>
+            <param name="primary">A flag indicating whether or not this field is the primary instance of all other similar fields.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePluralField.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the Gravatar profile field.
+            </summary>
+            <param name="value">The value of the field.</param>
+            <param name="type">The type of the field.</param>
+            <param name="primary">A flag indicating whether or not this field is the primary instance of all other similar fields.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePluralField.ToString">
+            <summary>
+            Gets a string representation of the field.
+            </summary>
+            <returns>The field value as a string.</returns>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfilePluralField.Value">
+            <summary>
+            Gets the value of the field.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfilePluralField.Type">
+            <summary>
+            Gets the type of the field.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfilePluralField.Primary">
+            <summary>
+            Gets a flag indicating whether or not this field is the primary instance
+            of all other similar fields.
+            </summary>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfileUrl">
+            <summary>
+            A URL field in a Gravatar profile.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileUrl.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the URL Gravatar profile field.
+            </summary>
+            <param name="title">The title of the URL.</param>
+            <param name="value">The URL value.</param>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileUrl.Title">
+            <summary>
+            Gest the title of the URL.
+            </summary>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfileEmail">
+            <summary>
+            An email field in a Gravatar profile.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileEmail.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the email field.
+            </summary>
+            <param name="value">The email address.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileEmail.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the email field.
+            </summary>
+            <param name="value">The email address.</param>
+            <param name="primary">A flag indicating whether or not this is the primary email address of the profile.</param>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfilePhoto">
+            <summary>
+            A photo field in a Gravatar profile.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePhoto.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the photo field
+            </summary>
+            <param name="value">The URI of the photo.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfilePhoto.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the photo field.
+            </summary>
+            <param name="value">The URI of the photo.</param>
+            <param name="type">The type of the photo.</param>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfileAccount">
+            <summary>
+            A field in a Gravatar profile that provides information about a user's account.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileAccount.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of a Gravatar profile account.
+            </summary>
+            <param name="domain">The domain of the account.</param>
+            <param name="username">The account username.</param>
+            <param name="display">The string to display for the account.</param>
+            <param name="url">The URL of the account.</param>
+            <param name="shortname">The short name of the account.</param>
+            <param name="verified">A flag indicating whether or not the account is verified.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileAccount.ToString">
+            <summary>
+            Gets a string representation of the account.
+            </summary>
+            <returns>The account string to display.</returns>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileAccount.Domain">
+            <summary>
+            Gets the domain of this account.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileAccount.Username">
+            <summary>
+            Gets the username of this account.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileAccount.Display">
+            <summary>
+            Gets a display string for this account.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileAccount.Url">
+            <summary>
+            Gets the URL of this account.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileAccount.Shortname">
+            <summary>
+            Gets the short name of this account.
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileAccount.Verified">
+            <summary>
+            Gets a flag indicating whether or not this account has been verified.
+            </summary>
+        </member>
+        <member name="T:NGravatar.ProfileInformation.GravatarProfileName">
+            <summary>
+            The name field of a Gravatar profile.
+            </summary>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileName.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a new instance of the Gravatar profile name.
+            </summary>
+            <param name="formatted">The full formatted name.</param>
+            <param name="familyName">The family name or surname.</param>
+            <param name="givenName">The given name or first name.</param>
+            <param name="middleName">The middle name.</param>
+            <param name="honorificPrefix">The prefix of the name.</param>
+            <param name="honorificSuffix">The suffix of the name.</param>
+        </member>
+        <member name="M:NGravatar.ProfileInformation.GravatarProfileName.ToString">
+            <summary>
+            Gets the name formatted as a string.
+            </summary>
+            <returns>The string formatted name.</returns>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileName.Formatted">
+            <summary>
+            Gets the full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g. Mr. Joseph Robert Smarr, Esq.). This is the Primary Sub-Field for this field, for the purposes of sorting and filtering. 
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileName.FamilyName">
+            <summary>
+            Gets the family name of this Contact, or "Last Name" in most Western languages (e.g. Smarr given the full name Mr. Joseph Robert Smarr, Esq.). 
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileName.GivenName">
+            <summary>
+            Gets the given name of this Contact, or "First Name" in most Western languages (e.g. Joseph given the full name Mr. Joseph Robert Smarr, Esq.). 
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileName.MiddleName">
+            <summary>
+            Gets the middle name(s) of this Contact (e.g. Robert given the full name Mr. Joseph Robert Smarr, Esq.). 
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileName.HonorificPrefix">
+            <summary>
+            Gets the honorific prefix(es) of this Contact, or "Title" in most Western languages (e.g. Mr. given the full name Mr. Joseph Robert Smarr, Esq.). 
+            </summary>
+        </member>
+        <member name="P:NGravatar.ProfileInformation.GravatarProfileName.HonorificSuffix">
+            <summary>
+            Gets the honorifix suffix(es) of this Contact, or "Suffix" in most Western languages (e.g. Esq. given the full name Mr. Joseph Robert Smarr, Esq.). 
+            </summary>
+        </member>
+    </members>
+</doc>

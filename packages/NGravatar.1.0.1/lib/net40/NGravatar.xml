@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NGravatar</name>
+    </assembly>
+    <members>
+        <member name="T:NGravatar.Html.GravatarHtml">
+            <summary>
+            MVC HtmlHelper extension methods for rendering Gravatar avatar images.
+            </summary>
+        </member>
+        <member name="M:NGravatar.Html.GravatarHtml.Gravatar(System.Web.Mvc.HtmlHelper,System.String,System.Nullable{System.Int32},System.Nullable{NGravatar.GravatarRating},System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Object)">
+            <summary>
+            Gets an <c>img</c> tag of the Gravatar for the supplied email address and parameters.
+            </summary>
+            <param name="htmlHelper">The HtmlHelper object that does the rendering.</param>
+            <param name="emailAddress">The email address whose Gravatar should be rendered.</param>
+            <param name="size">The size of the rendered Gravatar.</param>
+            <param name="rating">The maximum Gravatar rating to allow for rendered Gravatars.</param>
+            <param name="default">The default image to display if no Gravatar exists for the specified <paramref name="emailAddress"/>.</param>
+            <param name="forceDefault"><c>true</c> to always display the default image. Otherwise, <c>false</c>.</param> 
+            <param name="useHttps"><c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.</param>
+            <param name="htmlAttributes">Additional attributes to include in the rendered <c>img</c> tag.</param>
+            <returns>An HTML string of the rendered <c>img</c> tag.</returns>
+        </member>
+        <member name="M:NGravatar.Html.GravatarHtml.GravatarProfileLink(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Nullable{System.Boolean},System.Object)">
+            <summary>
+            Gets a link tag of the Gravatar profile for the specified <paramref name="emailAddress"/>.
+            </summary>
+            <param name="htmlHelper">The HtmlHelper object that does the rendering.</param>
+            <param name="emailAddress">The email address whose Gravatar profile link should be rendered.</param>
+            <param name="linkText">The link text to display.</param>
+            <param name="useHttps"><c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.</param>
+            <param name="htmlAttributes">Additional attributes to include in the rendered tag.</param>
+            <returns>An HTML string of the rendered link tag.</returns>
+        </member>
+        <member name="M:NGravatar.Html.GravatarHtml.GravatarProfileScript(System.Web.Mvc.HtmlHelper,System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Renders a script tag with the specified <paramref name="callback"/> for handling the profile JSON data.
+            </summary>
+            <param name="htmlHelper">The HtmlHelper object that renders the script tag.</param>
+            <param name="emailAddress">The email of the Gravatar profile whose JSON data should be used by the <paramref name="callback"/>.</param>
+            <param name="callback">A JavaScript function that will be called with the JSON data as a parameter when it is rendered.</param>
+            <param name="useHttps"><c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.</param>
+            <returns>An HTML script tag that can be included in a page.</returns>
+        </member>
+        <member name="T:NGravatar.Html.GravatarUrl">
+            <summary>
+            UrlHelper extension methods for retrieving Gravatar avatar images.
+            </summary>
+        </member>
+        <member name="M:NGravatar.Html.GravatarUrl.Gravatar(System.Web.Mvc.UrlHelper,System.String,System.Nullable{System.Int32},System.Nullable{NGravatar.GravatarRating},System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Gets the URI of the Gravatar image for the email address and parameters.
+            </summary>
+            <param name="urlHelper">The UrlHelper object getting the URL.</param>
+            <param name="emailAddress">The email whose Gravatar source should be returned.</param>
+            <param name="size">The size of the requested Gravatar.</param>
+            <param name="rating">The maximum Gravatar rating to allow for requested images.</param>
+            <param name="default">The default image to return if no Gravatar is found for the specified <paramref name="emailAddress"/>.</param>
+            <param name="forceDefault"><c>true</c> to force the <paramref name="default"/> image to be loaded. Otherwise, <c>false</c>.</param>
+            <param name="useHttps"><c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.</param>
+            <returns>The URI of the Gravatar for the email address and parameters.</returns>
+        </member>
+        <member name="M:NGravatar.Html.GravatarUrl.GravatarProfile(System.Web.Mvc.UrlHelper,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Gets a link to the profile of the Gravatar account for the given <paramref name="emailAddress"/>.
+            </summary>
+            <param name="urlHelper">The UrlHelper object getting the link.</param>
+            <param name="emailAddress">The email whose Gravatar profile link should be returned.</param>
+            <param name="useHttps"><c>true</c> to use the HTTPS Gravatar URL. Otherwise, <c>false</c>.</param>
+            <returns>A link to the Gravatar profile page for the given <paramref name="emailAddress"/>.</returns>
+        </member>
+    </members>
+</doc>
